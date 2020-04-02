@@ -7,7 +7,10 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -15,6 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -63,12 +67,6 @@
                     android:text="@string/string_description"
                     android:textSize="16dp"/>
             </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:visibility="gone" />
         </LinearLayout>
 
 

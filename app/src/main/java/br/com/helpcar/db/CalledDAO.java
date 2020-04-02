@@ -1,20 +1,19 @@
 package br.com.helpcar.db;
 
-import java.util.ArrayList;
+import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+
 import java.util.List;
 
 import br.com.helpcar.model.Called;
 
-public class CalledDAO {
-    private static final List<Called> CALLEDS = new ArrayList<>();
+@Dao
+public interface CalledDAO {
+    @Insert
+    void insert(Called called);
 
-    public List<Called> getCalleds() {
-        return CALLEDS;
-    }
-
-    public void adiciona(Called... calleds) {
-        for (Called called : calleds) {
-            CALLEDS.add(called);
-        }
-    }
+    @Query("SELECT * FROM Called")
+    LiveData<List<Called>> listCalleds();
 }

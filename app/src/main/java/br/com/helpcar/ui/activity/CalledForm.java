@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.helpcar.R;
-import br.com.helpcar.db.CalledDAO;
 import br.com.helpcar.model.Called;
 
 public class CalledForm extends AppCompatActivity {

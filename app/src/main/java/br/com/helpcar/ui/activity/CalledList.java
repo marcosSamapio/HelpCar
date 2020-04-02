@@ -15,7 +15,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 
 import br.com.helpcar.R;
-import br.com.helpcar.db.CalledDAO;
 import br.com.helpcar.model.Called;
 import br.com.helpcar.ui.adapter.CalledListAdapter;
 
