@@ -13,4 +13,5 @@
     <string name="string_email">E-mail</string>
     <string name="string_formaCalledTitle">Novo Chamado</string>
     <string name="string_location">Localização</string>
+    <string name="string_save">Salvar</string>
 </resources>

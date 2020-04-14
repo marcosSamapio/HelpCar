@@ -1,6 +1,7 @@
 package br.com.helpcar.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -13,6 +14,7 @@ public class Called {
     private String calledDescription;
     private String photoOfVehicle;
 
+    @Ignore
     public Called(int calledId, String kindOfVehicle, String brandVehicle, String modelVehicle, String calledDescription, String photoOfVehicle) {
         this.calledId = calledId;
         this.kindOfVehicle = kindOfVehicle;
@@ -22,7 +24,9 @@ public class Called {
         this.photoOfVehicle = photoOfVehicle;
     }
 
-    public Called() {}
+    public Called() {
+
+    }
 
     public int getCalledId() {
         return calledId;

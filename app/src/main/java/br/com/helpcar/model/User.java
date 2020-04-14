@@ -1,6 +1,7 @@
 package br.com.helpcar.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -8,10 +9,11 @@ public class User {
     @PrimaryKey(autoGenerate = true)
     private int userId = 0;
     private String userName;
-    private int userCpf;
+    private String userCpf;
     private String userEmail;
 
-    public User(int userId, String userName, int userCpf, String userEmail) {
+    @Ignore
+    public User(int userId, String userName, String userCpf, String userEmail) {
         this.userId = userId;
         this.userName = userName;
         this.userCpf = userCpf;
@@ -36,11 +38,11 @@ public class User {
         this.userName = userName;
     }
 
-    public int getUserCpf() {
+    public String getUserCpf() {
         return userCpf;
     }
 
-    public void setUserCpf(int userCpf) {
+    public void setUserCpf(String userCpf) {
         this.userCpf = userCpf;
     }
 

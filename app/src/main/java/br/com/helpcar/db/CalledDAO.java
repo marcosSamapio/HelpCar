@@ -12,7 +12,7 @@ import br.com.helpcar.model.Called;
 @Dao
 public interface CalledDAO {
     @Insert
-    void insert(Called called);
+    void createCalled(Called called);
 
     @Query("SELECT * FROM Called")
     LiveData<List<Called>> listCalleds();

@@ -15,7 +15,7 @@ import br.com.helpcar.model.Called;
 public class CalledListAdapter extends BaseAdapter {
 
     private final Context context;
-    private final List<Called> calleds;
+    private List<Called> calleds;
 
     public CalledListAdapter(Context context, List<Called> calleds) {
         this.context = context;
@@ -71,5 +71,10 @@ public class CalledListAdapter extends BaseAdapter {
     private void addBrand(Called called, TextView fieldBrand) {
         String brand = called.getBrandVehicle();
         fieldBrand.setText(brand);
+    }
+
+    public void setCalleds(List<Called> calleds){
+        this.calleds = calleds;
+        notifyDataSetChanged();
     }
 }

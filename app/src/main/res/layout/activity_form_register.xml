@@ -12,12 +12,11 @@
         android:layout_marginTop="100dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:gravity="start|top"
         android:hint="@string/string_name"
         android:inputType="textCapSentences"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/textUserCPF"
@@ -47,7 +46,7 @@
 
 
     <Button
-        android:id="@+id/btnConfirmCalled"
+        android:id="@+id/btnConfirmRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
@@ -64,9 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnConfirmCalled"
+        app:layout_constraintEnd_toStartOf="@+id/btnConfirmRegister"
         app:layout_constraintTop_toBottomOf="@+id/textUserEmail"
         android:text="@string/string_btnCancelar"
-        android:textColor="@color/colorWhite"
-        android:backgroundTint="@color/colorAccent" />
+        android:textColor="@color/colorAccent"
+        style="?attr/borderlessButtonStyle"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

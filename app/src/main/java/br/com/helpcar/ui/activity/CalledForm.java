@@ -7,9 +7,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
+import br.com.helpcar.viewModel.CalledViewModel;
 
 public class CalledForm extends AppCompatActivity {
 
@@ -17,7 +19,7 @@ public class CalledForm extends AppCompatActivity {
     private EditText fieldModelVehicle;
     private EditText fieldDescription;
     private Called called = new Called();
-    public CalledDAO dao = new CalledDAO();
+    private CalledViewModel calledViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class CalledForm extends AppCompatActivity {
         inicializingFields();
         configConfirmButton();
         configCancelButton();
+        calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
     }
 
     private void inicializingFields() {
@@ -53,8 +56,7 @@ public class CalledForm extends AppCompatActivity {
         called.setBrandVehicle(vehicleBrand);
         called.setModelVehicle(vehicleModel);
         called.setCalledDescription(calledDescription);
-        dao.adiciona(called);
-        finish();
+        calledViewModel.createCalled(called);
 
         Toast.makeText(this, "Novo Chamado:" +
                 called.getBrandVehicle() +
