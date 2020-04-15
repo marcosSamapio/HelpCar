@@ -39,7 +39,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         context = this;
         inicializingFields();
         configConfirmButton();
-        configCancelButton();
+//        configCancelButton();
     }
     private void inicializingFields() {
         fieldUserName = findViewById(textUserName);
