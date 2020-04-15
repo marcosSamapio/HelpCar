@@ -2,7 +2,6 @@ package br.com.helpcar.viewModel;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import br.com.helpcar.model.User;

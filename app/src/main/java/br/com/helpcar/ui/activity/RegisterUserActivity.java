@@ -19,6 +19,7 @@ import br.com.helpcar.model.User;
 import br.com.helpcar.viewModel.UserViewModel;
 
 import static br.com.helpcar.R.id.textUserCPF;
+import static br.com.helpcar.R.id.textUserEmail;
 import static br.com.helpcar.R.id.textUserName;
 
 public class RegisterUserActivity extends AppCompatActivity {
@@ -43,7 +44,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     private void inicializingFields() {
         fieldUserName = findViewById(textUserName);
         fieldUserCPF = findViewById(textUserCPF);
-        fieldUserEmail = findViewById(textUserCPF);
+        fieldUserEmail = findViewById(textUserEmail);
     }
 
     private void configConfirmButton() {
