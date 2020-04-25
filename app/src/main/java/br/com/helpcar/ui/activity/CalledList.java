@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.helpcar.R;
@@ -41,18 +40,16 @@ public class CalledList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        User user = userViewModel.getUser();
-        if (user == null) {
-            startActivity(new Intent(this, RegisterUserActivity.class));
-            finish();
-        }
+        verifyIfExistUser();
         setContentView(R.layout.activity_historic_called);
         setTitle(R.string.string_calleds);
 
         configFabNewCalled();
         context = this;
         calledList = findViewById(R.id.calledList);
+        calleds = new ArrayList<Called>();
+        adapter = new CalledListAdapter(context, calleds);
+        calledList.setAdapter(adapter);
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
         calledViewModel.listCalleds().observe(this, observe());
     }
@@ -62,10 +59,15 @@ public class CalledList extends AppCompatActivity {
         return new Observer<List<Called>>() {
             @Override
             public void onChanged(List<Called> calleds) {
-                adapter = new CalledListAdapter(context, calleds);
-                calledList.setAdapter(adapter);
+                adapter.setCalleds(calleds);
             }
         };
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        calledViewModel.listCalleds();
     }
 
     @Override
@@ -96,5 +98,18 @@ public class CalledList extends AppCompatActivity {
 
     private void openCalledForm() {
         startActivity(new Intent(this, CalledForm.class));
+    }
+
+    private void verifyIfExistUser() {
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        User user = userViewModel.getUser();
+        if (user == null) {
+            openUserRegisterActivity();
+        }
+    }
+
+    private void openUserRegisterActivity() {
+        startActivity(new Intent(this, RegisterUserActivity.class));
+        finish();
     }
 }

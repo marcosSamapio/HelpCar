@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Called {
     @PrimaryKey(autoGenerate = true)
-    private int calledId = 1;
+    private int calledId;
     private String kindOfVehicle;
     private String brandVehicle;
     private String modelVehicle;

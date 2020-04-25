@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
@@ -49,10 +50,10 @@ public class CalledForm extends AppCompatActivity {
         configConfirmButton();
         configCancelButton();
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
-//        ActionBar actionBar = getSupportActionBar();
-//        if(actionBar != null) {
-//            actionBar.setDisplayHomeAsUpEnabled(true);
-//        }
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -85,11 +86,11 @@ public class CalledForm extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 123 && resultCode == Activity.RESULT_OK) {
-            carregaFoto();
+            loadPhoto();
         }
     }
 
-    private void carregaFoto() {
+    private void loadPhoto() {
         Bitmap bitmap = BitmapFactory.decodeFile(photoLocal);
         Bitmap bm = Bitmap.createScaledBitmap(bitmap, 400, 300, true);
         calledImageView.setImageBitmap(bm);
