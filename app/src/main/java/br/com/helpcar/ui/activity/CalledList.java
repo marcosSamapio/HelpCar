@@ -48,10 +48,14 @@ public class CalledList extends AppCompatActivity {
         context = this;
         calledList = findViewById(R.id.calledList);
         calleds = new ArrayList<Called>();
-        adapter = new CalledListAdapter(context, calleds);
-        calledList.setAdapter(adapter);
+        configAdapter();
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
         calledViewModel.listCalleds().observe(this, observe());
+    }
+
+    private void configAdapter() {
+        adapter = new CalledListAdapter(context, calleds);
+        calledList.setAdapter(adapter);
     }
 
     @NotNull
@@ -62,12 +66,6 @@ public class CalledList extends AppCompatActivity {
                 adapter.setCalleds(calleds);
             }
         };
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        calledViewModel.listCalleds();
     }
 
     @Override

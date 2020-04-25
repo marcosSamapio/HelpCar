@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 public class Called {
     @PrimaryKey(autoGenerate = true)
     private int calledId;
-    private String kindOfVehicle;
     private String brandVehicle;
     private String modelVehicle;
     private String calledDescription;
@@ -17,7 +16,6 @@ public class Called {
     @Ignore
     public Called(int calledId, String kindOfVehicle, String brandVehicle, String modelVehicle, String calledDescription, String photoOfVehicle) {
         this.calledId = calledId;
-        this.kindOfVehicle = kindOfVehicle;
         this.brandVehicle = brandVehicle;
         this.modelVehicle = modelVehicle;
         this.calledDescription = calledDescription;
@@ -34,14 +32,6 @@ public class Called {
 
     public void setCalledId(int calledId) {
         this.calledId = calledId;
-    }
-
-    public String getKindOfVehicle() {
-        return kindOfVehicle;
-    }
-
-    public void setKindOfVehicle(String kindOfVehicle) {
-        this.kindOfVehicle = kindOfVehicle;
     }
 
     public String getBrandVehicle() {

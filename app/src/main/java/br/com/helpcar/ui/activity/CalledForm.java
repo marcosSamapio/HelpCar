@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,9 +22,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import br.com.helpcar.R;
@@ -35,6 +38,7 @@ public class CalledForm extends AppCompatActivity {
     private EditText fieldBrandVehicle;
     private EditText fieldModelVehicle;
     private EditText fieldDescription;
+    private CardView imageCardView;
     private ImageView calledImageView;
     private Called called = new Called();
     private CalledViewModel calledViewModel;
@@ -65,7 +69,14 @@ public class CalledForm extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        openCamera();
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case android.R.id.home : finish();
+            break;
+            case R.id.menuCamera : openCamera();
+            break;
+            default: return false;
+        }
         return false;
     }
 
@@ -93,13 +104,23 @@ public class CalledForm extends AppCompatActivity {
     private void loadPhoto() {
         Bitmap bitmap = BitmapFactory.decodeFile(photoLocal);
         Bitmap bm = Bitmap.createScaledBitmap(bitmap, 400, 300, true);
+        imageCardView.setVisibility(View.VISIBLE);
         calledImageView.setImageBitmap(bm);
+        convertImageToString(bm);
+    }
+
+    private void convertImageToString(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] b = baos.toByteArray();
+        photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
     }
 
     private void inicializingFields() {
         fieldBrandVehicle = findViewById(R.id.textBrandVehicle);
         fieldModelVehicle = findViewById(R.id.textModelVehicle);
         fieldDescription = findViewById(R.id.textDescriptionCalled);
+        imageCardView = findViewById(R.id.imageCardView);
         calledImageView = findViewById(R.id.calledPhoto);
     }
 
@@ -121,6 +142,7 @@ public class CalledForm extends AppCompatActivity {
         called.setBrandVehicle(vehicleBrand);
         called.setModelVehicle(vehicleModel);
         called.setCalledDescription(calledDescription);
+        called.setPhotoOfVehicle(photoBase64);
         calledViewModel.createCalled(called);
 
         Toast.makeText(this, "Novo Chamado:" +
