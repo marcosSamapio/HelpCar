@@ -14,6 +14,6 @@ public interface CalledDAO {
     @Insert
     void createCalled(Called called);
 
-    @Query("SELECT * FROM Called")
+    @Query("SELECT * FROM Called ORDER BY calledId DESC")
     LiveData<List<Called>> listCalleds();
 }
