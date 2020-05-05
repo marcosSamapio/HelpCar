@@ -3,6 +3,7 @@ package br.com.helpcar.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -41,12 +44,34 @@ public class RegisterUserActivity extends AppCompatActivity {
         configConfirmButton();
         configCancelButton();
     }
+
+   /* private boolean validateEmail(){
+        String email = fieldUserEmail.getEditText().getText().toString().trim();
+
+        if(email.isEmpty()) {
+            fieldUserEmail.setError("Campo não pode estar vazio");
+            return false;
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            fieldUserEmail.setError("Favor inserir e-mail valido");
+            return false;
+        }else{
+            fieldUserEmail.setError(null);
+            return true;
+        }
+    }*/
+
     private void inicializingFields() {
         fieldUserName = findViewById(textUserName);
         fieldUserCPF = findViewById(textUserCPF);
         fieldUserEmail = findViewById(textUserEmail);
-    }
 
+        //Criando máscara para campo cpf
+
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        MaskTextWatcher mtw = new MaskTextWatcher(fieldUserCPF, smf);
+        fieldUserCPF.addTextChangedListener(mtw);
+            }
+        //Fim da máscara
     private void configConfirmButton() {
         Button confirmButton = findViewById(R.id.btnConfirmRegister);
         confirmButton.setOnClickListener(
@@ -61,6 +86,9 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void createRegister() {
+      /*  if (!validateEmail()){
+            return;
+        }*/
         String username = fieldUserName.getText().toString();
         String userCpf = fieldUserCPF.getText().toString();
         String userEmail = fieldUserEmail.getText().toString();
