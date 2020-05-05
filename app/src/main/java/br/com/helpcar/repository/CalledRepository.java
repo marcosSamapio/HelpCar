@@ -25,6 +25,6 @@ public class CalledRepository {
     }
 
     public LiveData<List<Called>> listCalleds() {
-        return calledList;
+        return calledDAO.listCalleds();
     }
 }

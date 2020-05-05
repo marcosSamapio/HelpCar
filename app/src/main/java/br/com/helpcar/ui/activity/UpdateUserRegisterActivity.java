@@ -1,10 +1,13 @@
 package br.com.helpcar.ui.activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -31,6 +34,10 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         fillFields();
         configConfirmButton();
         configCancelButton();
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void fillFields() {
@@ -80,5 +87,16 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         user.setUserCpf(userCpf);
         user.setUserEmail(userEmail);
         userViewModel.updateUser(user);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case android.R.id.home : finish();
+            break;
+            default: return false;
+        }
+        return false;
     }
 }

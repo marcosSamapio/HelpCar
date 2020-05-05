@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
+import br.com.helpcar.util.Loader;
 
 public class CalledListAdapter extends BaseAdapter {
 
@@ -50,7 +52,18 @@ public class CalledListAdapter extends BaseAdapter {
         addModel(called, fieldModel);
         TextView fieldDescription = view.findViewById(R.id.textCard_descrption);
         addDescription(called, fieldDescription);
+
+        ImageView imageCalledView =  view.findViewById(R.id.calledImage);
+        if(called.getPhotoOfVehicle() != null) {
+            imageCalledView.setVisibility(View.VISIBLE);
+            addPhoto(called, imageCalledView);
+        }
         return view;
+    }
+
+    private void addPhoto(Called called, ImageView imageCalledView) {
+        String photoOfVehicle = called.getPhotoOfVehicle();
+        imageCalledView.setImageBitmap(Loader.decode(photoOfVehicle));
     }
 
     private void addId(Called called, TextView fieldCalled) {
@@ -70,7 +83,7 @@ public class CalledListAdapter extends BaseAdapter {
 
     private void addBrand(Called called, TextView fieldBrand) {
         String brand = called.getBrandVehicle();
-        fieldBrand.setText(brand);
+        fieldBrand.setText(brand + "  -");
     }
 
     public void setCalleds(List<Called> calleds){

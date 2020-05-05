@@ -1,84 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:layout_width="match_parent">
 
-    <EditText
-        android:id="@+id/textBrandVehicle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_brandVehicle"
-        android:inputType="textCapWords"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="32dp">
 
-    <EditText
-        android:id="@+id/textModelVehicle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_modelVehicle"
-        android:inputType="textCapSentences"
-        app:layout_constraintTop_toBottomOf="@+id/textBrandVehicle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/textBrandVehicle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:hint="@string/string_brandVehicle"
+            android:inputType="textCapWords"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/textDescriptionCalled"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start|top"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_description"
-        android:inputType="textCapSentences"
-        app:layout_constraintTop_toBottomOf="@+id/textModelVehicle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <EditText
+            android:id="@+id/textModelVehicle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:hint="@string/string_modelVehicle"
+            android:inputType="textCapSentences"
+            app:layout_constraintTop_toBottomOf="@+id/textBrandVehicle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
-        android:id="@+id/btnConfirmCalled"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDescriptionCalled"
-        android:text="@string/string_btnConfirmar"
-        android:textColor="@color/colorWhite"
-        android:backgroundTint="@color/colorAccent"/>
+        <EditText
+            android:id="@+id/textDescriptionCalled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="start|top"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:hint="@string/string_description"
+            android:inputType="textMultiLine"
+            app:layout_constraintTop_toBottomOf="@+id/textModelVehicle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-<!--    <Button-->
-<!--        android:id="@+id/btnCancel"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="64dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/btnConfirmCalled"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textDescriptionCalled"-->
-<!--        android:text="@string/string_btnCancelar"-->
-<!--        android:textColor="@color/colorWhite"-->
-<!--        android:backgroundTint="@color/colorAccent" />-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCardView"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/textDescriptionCalled"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone">
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnConfirmCalled"
-        app:layout_constraintTop_toBottomOf="@+id/textDescriptionCalled"
-        android:text="@string/string_btnCancelar"
-        android:textColor="@color/colorAccent"
-        style="?attr/borderlessButtonStyle"/>
+            <ImageView
+                android:id="@+id/calledPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnConfirmCalled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageCardView"
+            android:text="@string/string_btnConfirmar"
+            android:textColor="@color/colorWhite"
+            android:backgroundTint="@color/colorAccent"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnConfirmCalled"
+            app:layout_constraintTop_toBottomOf="@+id/imageCardView"
+            android:text="@string/string_btnCancelar"
+            android:textColor="@color/colorAccent"
+            style="?attr/borderlessButtonStyle"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

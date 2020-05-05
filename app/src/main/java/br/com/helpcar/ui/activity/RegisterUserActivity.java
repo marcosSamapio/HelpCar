@@ -97,11 +97,11 @@ public class RegisterUserActivity extends AppCompatActivity {
         user.setUserEmail(userEmail);
         userViewModel.createUser(user);
 
-        Toast.makeText(this, "Cadastro Realizado:" +
-                user.getUserName() +
-                "\n" +
+        Toast.makeText(this, "Cadastro Realizado:\n" +
+                "Nome: " + user.getUserName() +
+                "\nCPF: " +
                 user.getUserCpf() +
-                "\n" +
+                "\nEmail: " +
                 user.getUserEmail(), Toast.LENGTH_LONG).show();
     }
 

@@ -20,7 +20,7 @@ public class CalledViewModel extends AndroidViewModel {
         calledList = calledRepository.listCalleds();
     }
 
-    public LiveData<List<Called>> listCalleds() { return calledList; }
+    public LiveData<List<Called>> listCalleds() { return calledRepository.listCalleds(); }
 
     public void createCalled(Called called) {calledRepository.createCalled(called); }
 }
