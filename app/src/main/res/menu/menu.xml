@@ -3,5 +3,5 @@
     <item
         android:id="@+id/menuItemRegister"
         android:icon="@drawable/ic_person"
-        android:title="@string/string_register"/>
+        android:title="@string/string_profile"/>
 </menu>

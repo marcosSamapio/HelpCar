@@ -11,6 +11,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
 import br.com.helpcar.viewModel.UserViewModel;
@@ -27,7 +30,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_register);
-        setTitle(R.string.string_register);
+        setTitle(R.string.string_profile);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         user = getUser();
         inicializingFields();
@@ -64,7 +67,10 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         fieldUserName = findViewById(R.id.textUserName);
         fieldUserCPF = findViewById(R.id.textUserCPF);
         fieldUserEmail = findViewById(R.id.textUserEmail);
-        fieldUserName.setText(user.getUserName());
+
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        MaskTextWatcher mtw = new MaskTextWatcher(fieldUserCPF, smf);
+        fieldUserCPF.addTextChangedListener(mtw);
     }
 
     private void configConfirmButton() {

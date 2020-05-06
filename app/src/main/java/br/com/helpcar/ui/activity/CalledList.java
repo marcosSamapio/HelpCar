@@ -79,7 +79,7 @@ public class CalledList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
         if(menuItemId == R.id.menuItemRegister) {
-            startActivity(new Intent(this, RegisterUserActivity.class));
+            startActivity(new Intent(this, UpdateUserRegisterActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
