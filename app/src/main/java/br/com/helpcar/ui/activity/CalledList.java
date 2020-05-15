@@ -61,7 +61,7 @@ public class CalledList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Called called = (Called) adapter.getItem(position);
-
+                startActivity(new Intent(context, Maps.class));
             }
         });
     }

@@ -40,6 +40,7 @@
         <activity android:name=".ui.activity.CalledForm" />
         <activity android:name=".ui.activity.RegisterUserActivity" />
         <activity android:name=".ui.activity.UpdateUserRegisterActivity"/>
+        <activity android:name=".ui.activity.Maps"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"
