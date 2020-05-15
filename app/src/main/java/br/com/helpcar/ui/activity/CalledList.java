@@ -49,7 +49,7 @@ public class CalledList extends AppCompatActivity {
         configFabNewCalled();
         context = this;
         calledList = findViewById(R.id.calledList);
-        calleds = new ArrayList<Called>();
+        calleds = new ArrayList<>();
         configAdapter();
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
         calledViewModel.listCalleds().observe(this, observe());
@@ -60,6 +60,7 @@ public class CalledList extends AppCompatActivity {
         calledList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                Called called = (Called) adapter.getItem(position);
 
             }
         });

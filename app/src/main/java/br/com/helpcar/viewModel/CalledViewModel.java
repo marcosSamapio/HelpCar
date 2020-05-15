@@ -12,12 +12,10 @@ import br.com.helpcar.model.Called;
 
 public class CalledViewModel extends AndroidViewModel {
     private CalledRepository calledRepository;
-    private LiveData<List<Called>> calledList;
 
     public CalledViewModel( Application application) {
         super(application);
         calledRepository = new CalledRepository(application);
-        calledList = calledRepository.listCalleds();
     }
 
     public LiveData<List<Called>> listCalleds() { return calledRepository.listCalleds(); }

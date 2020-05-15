@@ -12,12 +12,10 @@ import br.com.helpcar.model.Called;
 
 public class CalledRepository {
     private CalledDAO calledDAO;
-    private LiveData<List<Called>> calledList;
 
     public CalledRepository(Application application) {
         CalledRoomDatabase db = CalledRoomDatabase.getInstance(application);
         calledDAO = db.calledDAO();
-        calledList = calledDAO.listCalleds();
     }
 
     public void createCalled(Called called) {
