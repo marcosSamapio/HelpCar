@@ -1,13 +1,20 @@
 package br.com.helpcar.ui.activity;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,8 +30,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -32,6 +47,8 @@ import java.io.File;
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
 import br.com.helpcar.viewModel.CalledViewModel;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class CalledForm extends AppCompatActivity {
 
@@ -44,6 +61,8 @@ public class CalledForm extends AppCompatActivity {
     private CalledViewModel calledViewModel;
     private String photoLocal;
     private String photoBase64;
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +77,11 @@ public class CalledForm extends AppCompatActivity {
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        getLocation();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,14 +166,14 @@ public class CalledForm extends AppCompatActivity {
         called.setModelVehicle(vehicleModel);
         called.setCalledDescription(calledDescription);
         called.setPhotoOfVehicle(photoBase64);
+        called.setLatitude(location.getLatitude());
+        called.setLongitude(location.getLongitude());
         calledViewModel.createCalled(called);
 
         Toast.makeText(this, "Novo Chamado:" +
-                called.getBrandVehicle() +
+                called.getLatitude() +
                 "\n" +
-                called.getModelVehicle() +
-                "\n" +
-                called.getCalledDescription(), Toast.LENGTH_LONG).show();
+                called.getLongitude(), Toast.LENGTH_LONG).show();
     }
 
     private void configCancelButton() {
@@ -161,5 +184,72 @@ public class CalledForm extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void getLocation() {
+        if (checkPermission()) {
+            if (isLocationEnable()) {
+                requestNewLocation();
+            } else {
+                Toast.makeText(this, "Ligue o GPS", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        } else requestLocationPermission();
+    }
+
+    private void requestNewLocation() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(10000);
+        locationRequest.setSmallestDisplacement(10.0F);
+
+        fusedLocationProviderClient.requestLocationUpdates(
+                locationRequest, locationCallback, Looper.myLooper()
+        );
+
+
+    }
+
+    private LocationCallback locationCallback = new LocationCallback() {
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            location = locationResult.getLastLocation();
+        }
+    };
+
+    private boolean checkPermission() {
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        return false;
+    }
+
+    private void requestLocationPermission() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{ACCESS_FINE_LOCATION}, 123);
+    }
+
+    private boolean isLocationEnable() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+                locationManager.isProviderEnabled(locationManager.NETWORK_PROVIDER);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 123 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            getLocation();
+        } else {
+            Toast.makeText(this, "Não será possível pegar a localização sem permissão.", Toast.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
     }
 }

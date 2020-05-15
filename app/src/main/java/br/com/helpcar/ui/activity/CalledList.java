@@ -7,7 +7,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -51,6 +53,16 @@ public class CalledList extends AppCompatActivity {
         configAdapter();
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
         calledViewModel.listCalleds().observe(this, observe());
+        configListView();
+    }
+
+    private void configListView() {
+        calledList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+            }
+        });
     }
 
     private void configAdapter() {
