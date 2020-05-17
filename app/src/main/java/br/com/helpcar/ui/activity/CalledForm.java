@@ -1,6 +1,5 @@
 package br.com.helpcar.ui.activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +30,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -189,7 +187,7 @@ public class CalledForm extends AppCompatActivity {
     private void getLocation() {
         if (checkPermission()) {
             if (isLocationEnable()) {
-                requestNewLocation();
+                requestActualLocation();
             } else {
                 Toast.makeText(this, "Ligue o GPS", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -198,7 +196,7 @@ public class CalledForm extends AppCompatActivity {
         } else requestLocationPermission();
     }
 
-    private void requestNewLocation() {
+    private void requestActualLocation() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(10000);

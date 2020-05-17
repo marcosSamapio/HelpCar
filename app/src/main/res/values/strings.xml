@@ -17,4 +17,6 @@
     <string name="string_photo">Foto</string>
     <string name="title_activity_lixo">Map</string>
     <string name="string_profile">Perfil</string>
+    <string name="string_called">Chamado</string>
+
 </resources>

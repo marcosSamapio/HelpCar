@@ -18,10 +18,12 @@ public class CalledListAdapter extends BaseAdapter {
 
     private final Context context;
     private List<Called> calleds;
+    private String cardTitle;
 
-    public CalledListAdapter(Context context, List<Called> calleds) {
+    public CalledListAdapter(Context context, List<Called> calleds, String cardTitle) {
         this.context = context;
         this.calleds = calleds;
+        this.cardTitle = cardTitle;
     }
 
     @Override
@@ -68,7 +70,7 @@ public class CalledListAdapter extends BaseAdapter {
 
     private void addId(Called called, TextView fieldCalled) {
         int id = called.getCalledId();
-        fieldCalled.setText("Chamado " + id);
+        fieldCalled.setText(cardTitle + " " + id);
     }
 
     private void addDescription(Called called, TextView fieldDescrpition) {

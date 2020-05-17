@@ -2,6 +2,7 @@ package br.com.helpcar.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -61,14 +62,27 @@ public class CalledList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Called called = (Called) adapter.getItem(position);
-                startActivity(new Intent(context, Maps.class));
+                String uri = "https://www.google.com/maps/search/?api=1&query=" +
+                        called.getLatitude() + "," +
+                        called.getLongitude();
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                intent.setPackage("com.google.android.apps.maps");
+                startActivity(intent);
+//                Intent intent = new Intent(context, Maps.class);
+//                intent.putExtra("called", called);
+//                startActivity(intent);
             }
         });
     }
 
     private void configAdapter() {
-        adapter = new CalledListAdapter(context, calleds);
+        String cardTitle = getCardTitle();
+        adapter = new CalledListAdapter(context, calleds, cardTitle);
         calledList.setAdapter(adapter);
+    }
+
+    private String getCardTitle() {
+        return String.valueOf(getResources().getText(R.string.string_called));
     }
 
     @NotNull
