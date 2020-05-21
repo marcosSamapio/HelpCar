@@ -105,9 +105,14 @@ public class CalledList extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
-        if(menuItemId == R.id.menuItemRegister) {
-            startActivity(new Intent(this, UpdateUserRegisterActivity.class));
+        switch (menuItemId) {
+            case R.id.menuItemRegister: startActivity(new Intent(this, UpdateUserRegisterActivity.class));
+            break;
+            case R.id.menuItemSupport: startActivity(new Intent(this, SupportActivity.class));
         }
+//        if(menuItemId == R.id.menuItemRegister) {
+//            startActivity(new Intent(this, UpdateUserRegisterActivity.class));
+//        }
         return super.onOptionsItemSelected(item);
     }
 

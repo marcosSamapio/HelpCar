@@ -18,5 +18,9 @@
     <string name="title_activity_lixo">Map</string>
     <string name="string_profile">Perfil</string>
     <string name="string_called">Chamado</string>
+    <string name="string_support">Suporte</string>
+    <string name="string_btnEnviar">Enviar</string>
+    <string name="string_emailSupport">support@helpcar.com.br</string>
+    <string name="string_emailAsk">Descreva seu problema</string>
 
 </resources>

@@ -138,9 +138,9 @@ public class CalledForm extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldBrandVehicle = findViewById(R.id.textBrandVehicle);
+        fieldBrandVehicle = findViewById(R.id.textEmail);
         fieldModelVehicle = findViewById(R.id.textModelVehicle);
-        fieldDescription = findViewById(R.id.textDescriptionCalled);
+        fieldDescription = findViewById(R.id.textBodyEmail);
         imageCardView = findViewById(R.id.imageCardView);
         calledImageView = findViewById(R.id.calledPhoto);
     }
@@ -168,10 +168,7 @@ public class CalledForm extends AppCompatActivity {
         called.setLongitude(location.getLongitude());
         calledViewModel.createCalled(called);
 
-        Toast.makeText(this, "Novo Chamado:" +
-                called.getLatitude() +
-                "\n" +
-                called.getLongitude(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Chamado aberto. Aguarde o guincho.", Toast.LENGTH_LONG).show();
     }
 
     private void configCancelButton() {

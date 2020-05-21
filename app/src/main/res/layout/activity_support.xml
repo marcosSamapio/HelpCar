@@ -17,24 +17,15 @@
             android:layout_marginTop="100dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
-            android:hint="@string/string_brandVehicle"
             android:inputType="textCapWords"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <EditText
-            android:id="@+id/textModelVehicle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:hint="@string/string_modelVehicle"
-            android:inputType="textCapSentences"
-            app:layout_constraintTop_toBottomOf="@+id/textEmail"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
 
         <EditText
             android:id="@+id/textBodyEmail"
@@ -44,9 +35,9 @@
             android:layout_marginTop="32dp"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
-            android:hint="@string/string_description"
+            android:hint="@string/string_emailAsk"
             android:inputType="textMultiLine"
-            app:layout_constraintTop_toBottomOf="@+id/textModelVehicle"
+            app:layout_constraintTop_toBottomOf="@+id/textEmail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -74,7 +65,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageCardView"
-            android:text="@string/string_btnConfirmar"
+            android:text="@string/string_btnEnviar"
             android:textColor="@color/colorWhite"
             android:backgroundTint="@color/colorAccent"/>
 
