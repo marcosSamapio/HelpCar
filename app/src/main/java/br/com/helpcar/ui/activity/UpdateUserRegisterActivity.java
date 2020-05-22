@@ -1,5 +1,6 @@
 package br.com.helpcar.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
+import br.com.helpcar.util.CheckField;
 import br.com.helpcar.viewModel.UserViewModel;
 
 public class UpdateUserRegisterActivity extends AppCompatActivity {
@@ -79,8 +81,23 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUser();
-                finish();
+                Boolean register = CheckField.isEmpty(fieldUserName);
+                if(!register) {
+                    register = CheckField.isEmpty(fieldUserCPF);
+                    if(!register) {
+                        register = CheckField.isEmpty(fieldUserEmail);
+                        if(!register) {
+                            updateUser();
+                            finish();
+                        }
+                    } else {
+                        CheckField.isEmpty(fieldUserName);
+                        CheckField.isEmpty(fieldUserEmail);
+                    }
+                } else {
+                    CheckField.isEmpty(fieldUserCPF);
+                    CheckField.isEmpty(fieldUserEmail);
+                }
             }
         });
     }

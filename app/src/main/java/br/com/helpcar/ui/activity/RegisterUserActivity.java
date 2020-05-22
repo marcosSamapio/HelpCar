@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
+import br.com.helpcar.util.CheckField;
 import br.com.helpcar.viewModel.UserViewModel;
 
 import static br.com.helpcar.R.id.textUserCPF;
@@ -45,21 +46,6 @@ public class RegisterUserActivity extends AppCompatActivity {
         configCancelButton();
     }
 
-   /* private boolean validateEmail(){
-        String email = fieldUserEmail.getEditText().getText().toString().trim();
-
-        if(email.isEmpty()) {
-            fieldUserEmail.setError("Campo não pode estar vazio");
-            return false;
-        }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            fieldUserEmail.setError("Favor inserir e-mail valido");
-            return false;
-        }else{
-            fieldUserEmail.setError(null);
-            return true;
-        }
-    }*/
-
     private void inicializingFields() {
         fieldUserName = findViewById(textUserName);
         fieldUserCPF = findViewById(textUserCPF);
@@ -78,17 +64,29 @@ public class RegisterUserActivity extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createRegister();
-                startActivity(new Intent(context, CalledList.class));
-                finish();
+                Boolean register = CheckField.isEmpty(fieldUserName);
+                if(!register) {
+                    register = CheckField.isEmpty(fieldUserCPF);
+                    if(!register) {
+                        register = CheckField.isEmpty(fieldUserEmail);
+                        if(!register) {
+                            createRegister();
+                            startActivity(new Intent(context, CalledList.class));
+                            finish();
+                        }
+                    } else {
+                        CheckField.isEmpty(fieldUserName);
+                        CheckField.isEmpty(fieldUserEmail);
+                    }
+                } else {
+                    CheckField.isEmpty(fieldUserCPF);
+                    CheckField.isEmpty(fieldUserEmail);
+                }
             }
         });
     }
 
     private void createRegister() {
-      /*  if (!validateEmail()){
-            return;
-        }*/
         String username = fieldUserName.getText().toString();
         String userCpf = fieldUserCPF.getText().toString();
         String userEmail = fieldUserEmail.getText().toString();

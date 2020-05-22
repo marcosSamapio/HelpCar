@@ -44,6 +44,7 @@ import java.io.File;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
+import br.com.helpcar.util.CheckField;
 import br.com.helpcar.viewModel.CalledViewModel;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -150,10 +151,22 @@ public class CalledForm extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createCalled();
-                finish();
+                Boolean create;
+                create = CheckField.isEmpty(fieldBrandVehicle);
+                if(create == false) {
+                    create = CheckField.isEmpty(fieldModelVehicle);
+                    if (create == false) {
+                        createCalled();
+                        finish();
+                    }
+                } else CheckField.isEmpty(fieldModelVehicle);
             }
         });
+    }
+
+    private Boolean CheckFieldNull(EditText editText) {
+
+        return null;
     }
 
     private void createCalled() {
