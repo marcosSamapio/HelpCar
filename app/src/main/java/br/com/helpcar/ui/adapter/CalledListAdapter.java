@@ -12,7 +12,7 @@ import java.util.List;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
-import br.com.helpcar.util.ImageLoader;
+import br.com.helpcar.util.Image;
 
 public class CalledListAdapter extends BaseAdapter {
 
@@ -65,7 +65,7 @@ public class CalledListAdapter extends BaseAdapter {
 
     private void addPhoto(Called called, ImageView imageCalledView) {
         String photoOfVehicle = called.getPhotoOfVehicle();
-        imageCalledView.setImageBitmap(ImageLoader.decode(photoOfVehicle));
+        imageCalledView.setImageBitmap(Image.decode(photoOfVehicle));
     }
 
     private void addId(Called called, TextView fieldCalled) {

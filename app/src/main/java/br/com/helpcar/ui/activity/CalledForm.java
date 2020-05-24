@@ -45,6 +45,7 @@ import java.io.File;
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
 import br.com.helpcar.util.CheckField;
+import br.com.helpcar.util.Image;
 import br.com.helpcar.viewModel.CalledViewModel;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -62,6 +63,7 @@ public class CalledForm extends AppCompatActivity {
     private String photoBase64;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location location;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,7 @@ public class CalledForm extends AppCompatActivity {
         inicializingFields();
         configConfirmButton();
         configCancelButton();
+        context = this;
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
@@ -111,8 +114,7 @@ public class CalledForm extends AppCompatActivity {
 
     private Uri definePhotoLocal() {
         photoLocal = getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/" + System.currentTimeMillis() + ".jpg";
-        File arquivo = new File(photoLocal);
-        return FileProvider.getUriForFile(this, "helpcar.fileprovider", arquivo);
+        return Image.setFileAddress(photoLocal, context);
     }
 
     @Override
@@ -132,10 +134,7 @@ public class CalledForm extends AppCompatActivity {
     }
 
     private void convertImageToString(Bitmap bm) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] b = baos.toByteArray();
-        photoBase64 = Base64.encodeToString(b, Base64.DEFAULT);
+        photoBase64 = Image.convertToString(bm);
     }
 
     private void inicializingFields() {
@@ -162,11 +161,6 @@ public class CalledForm extends AppCompatActivity {
                 } else CheckField.isEmpty(fieldModelVehicle);
             }
         });
-    }
-
-    private Boolean CheckFieldNull(EditText editText) {
-
-        return null;
     }
 
     private void createCalled() {
