@@ -12,8 +12,8 @@ public interface UserDAO {
     @Insert
     void createUser(User user);
 
-    @Query("SELECT * FROM User WHERE userId = 1")
-    User getUser();
+    @Query("SELECT * FROM User WHERE userId = :userId")
+    User getUser(int userId);
 
     @Update
     void updateUser(User user);

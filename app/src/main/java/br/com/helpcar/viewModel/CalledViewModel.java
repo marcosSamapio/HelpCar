@@ -18,7 +18,7 @@ public class CalledViewModel extends AndroidViewModel {
         calledRepository = new CalledRepository(application);
     }
 
-    public LiveData<List<Called>> listCalleds() { return calledRepository.listCalleds(); }
+    public LiveData<List<Called>> listCalleds(int userId) { return calledRepository.listCalleds(userId); }
 
     public void createCalled(Called called) {calledRepository.createCalled(called); }
 }

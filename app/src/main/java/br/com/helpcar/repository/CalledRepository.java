@@ -22,7 +22,7 @@ public class CalledRepository {
         calledDAO.createCalled(called);
     }
 
-    public LiveData<List<Called>> listCalleds() {
-        return calledDAO.listCalleds();
+    public LiveData<List<Called>> listCalleds(int userId) {
+        return calledDAO.listCalleds(userId);
     }
 }

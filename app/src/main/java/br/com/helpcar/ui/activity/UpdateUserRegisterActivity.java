@@ -26,15 +26,17 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     private EditText fieldUserName;
     private EditText fieldUserCPF;
     private EditText fieldUserEmail;
+    private int userId;
     private User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        userId = (int) getIntent().getSerializableExtra("userIdSession");
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        user = getUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_register);
         setTitle(R.string.string_profile);
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        user = getUser();
         inicializingFields();
         fillFields();
         configConfirmButton();
@@ -52,7 +54,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     }
 
     private User getUser() {
-        return userViewModel.getUser();
+        return userViewModel.getUser(userId);
     }
 
     private void configCancelButton() {

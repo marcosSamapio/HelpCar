@@ -79,7 +79,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                         CheckField.isEmpty(fieldUserEmail);
                     }
                 } else {
-                    CheckField.isEmpty(fieldUserCPF);
+                    CheckField.isEmpty(fieldUserCPF, 11);
                     CheckField.isEmpty(fieldUserEmail);
                 }
             }

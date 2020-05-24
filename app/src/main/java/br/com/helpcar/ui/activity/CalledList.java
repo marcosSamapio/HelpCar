@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -38,12 +37,13 @@ public class CalledList extends AppCompatActivity {
     private CalledViewModel calledViewModel;
     private UserViewModel userViewModel;
     private Context context;
+    private int userId = 1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         verifyIfExistUser();
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic_called);
         setTitle(R.string.string_calleds);
 
@@ -53,7 +53,7 @@ public class CalledList extends AppCompatActivity {
         calleds = new ArrayList<>();
         configAdapter();
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
-        calledViewModel.listCalleds().observe(this, observe());
+        calledViewModel.listCalleds(userId).observe(this, observe());
         configListView();
     }
 
@@ -68,9 +68,6 @@ public class CalledList extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                 intent.setPackage("com.google.android.apps.maps");
                 startActivity(intent);
-//                Intent intent = new Intent(context, Maps.class);
-//                intent.putExtra("called", called);
-//                startActivity(intent);
             }
         });
     }
@@ -106,14 +103,17 @@ public class CalledList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
         switch (menuItemId) {
-            case R.id.menuItemRegister: startActivity(new Intent(this, UpdateUserRegisterActivity.class));
+            case R.id.menuItemRegister: startActivity(buildIntent());
             break;
             case R.id.menuItemSupport: startActivity(new Intent(this, SupportActivity.class));
         }
-//        if(menuItemId == R.id.menuItemRegister) {
-//            startActivity(new Intent(this, UpdateUserRegisterActivity.class));
-//        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private Intent buildIntent() {
+        Intent intent = new Intent(this, UpdateUserRegisterActivity.class);
+        intent.putExtra("userIdSession", userId);
+        return intent;
     }
 
     private void configFabNewCalled() {
@@ -127,14 +127,17 @@ public class CalledList extends AppCompatActivity {
     }
 
     private void openCalledForm() {
-        startActivity(new Intent(this, CalledForm.class));
+        Intent intent = new Intent(this, CalledForm.class);
+        intent.putExtra("userIdSession", userId);
+        startActivity(intent);
     }
 
     private void verifyIfExistUser() {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        User user = userViewModel.getUser();
+        User user = userViewModel.getUser(userId);
         if (user == null) {
             openUserRegisterActivity();
+            finish();
         }
     }
 

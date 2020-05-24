@@ -15,11 +15,11 @@ public class UserViewModel extends AndroidViewModel {
         userRepository = new UserRepository(application);
     }
 
-    public void createUser(User user) { userRepository.createUser(user); }
-
-    public User getUser() {
-        return userRepository.getUser();
+    public void createUser(User user) {
+        userRepository.createUser(user);
     }
+
+    public User getUser(int userId) { return userRepository.getUser(userId); }
 
     public void updateUser(User user) {
         userRepository.updateUser(user);

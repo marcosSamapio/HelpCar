@@ -21,9 +21,7 @@ public class UserRepository {
         Log.i("usuario", ""+user.getUserName());
     }
 
-    public User getUser() {
-        return userDao.getUser();
-    }
+    public User getUser(int userId) { return userDao.getUser(userId); }
 
     public void updateUser(User user) {
         userDao.updateUser(user);

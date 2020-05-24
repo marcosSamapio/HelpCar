@@ -14,7 +14,6 @@ import android.os.Environment;
 import android.os.Looper;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,7 +29,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -39,14 +37,12 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-
 import br.com.helpcar.R;
 import br.com.helpcar.model.Called;
 import br.com.helpcar.util.CheckField;
 import br.com.helpcar.util.Image;
 import br.com.helpcar.viewModel.CalledViewModel;
+import br.com.helpcar.viewModel.UserViewModel;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -59,22 +55,26 @@ public class CalledForm extends AppCompatActivity {
     private ImageView calledImageView;
     private Called called = new Called();
     private CalledViewModel calledViewModel;
+    private UserViewModel userViewModel;
     private String photoLocal;
     private String photoBase64;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private Location location;
     private Context context;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_called);
+        userId = (int) getIntent().getSerializableExtra("userIdSession");
         setTitle(R.string.string_formaCalledTitle);
         inicializingFields();
         configConfirmButton();
         configCancelButton();
         context = this;
         calledViewModel = new ViewModelProvider(this).get(CalledViewModel.class);
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -173,6 +173,7 @@ public class CalledForm extends AppCompatActivity {
         called.setPhotoOfVehicle(photoBase64);
         called.setLatitude(location.getLatitude());
         called.setLongitude(location.getLongitude());
+        called.setUserId(userId);
         calledViewModel.createCalled(called);
 
         Toast.makeText(this, "Chamado aberto. Aguarde o guincho.", Toast.LENGTH_LONG).show();

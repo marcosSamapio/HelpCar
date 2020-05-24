@@ -16,9 +16,10 @@ public class Called implements Serializable {
     private String photoOfVehicle;
     private Double latitude;
     private Double longitude;
+    private int userId;
 
     @Ignore
-    public Called(int calledId, String brandVehicle, String modelVehicle, String calledDescription, String photoOfVehicle, Double latitude, Double longitude) {
+    public Called(int calledId, String brandVehicle, String modelVehicle, String calledDescription, String photoOfVehicle, Double latitude, Double longitude, int userId) {
         this.calledId = calledId;
         this.brandVehicle = brandVehicle;
         this.modelVehicle = modelVehicle;
@@ -26,6 +27,7 @@ public class Called implements Serializable {
         this.photoOfVehicle = photoOfVehicle;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.userId = userId;
     }
 
     public Called() {
@@ -97,5 +99,13 @@ public class Called implements Serializable {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
