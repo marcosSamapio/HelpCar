@@ -21,5 +21,8 @@
     <string name="string_btnEnviar">Enviar</string>
     <string name="string_emailSupport">support@helpcar.com.br</string>
     <string name="string_emailAsk">Descreva seu problema</string>
+    <string name="string_help">Help</string>
+    <string name="string_car">Car</string>
+    <string name="string_powered">powered by F5</string>
 
 </resources>
