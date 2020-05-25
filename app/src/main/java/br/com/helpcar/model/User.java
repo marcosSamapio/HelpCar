@@ -13,6 +13,7 @@ public class User implements Serializable {
     private String userName;
     private String userCpf;
     private String userEmail;
+    private String userPassword;
 
     @Ignore
     public User(int userId, String userName, String userCpf, String userEmail) {
@@ -54,5 +55,13 @@ public class User implements Serializable {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 }

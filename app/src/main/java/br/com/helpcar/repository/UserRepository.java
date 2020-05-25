@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.helpcar.db.CalledRoomDatabase;
 import br.com.helpcar.db.UserDAO;
 import br.com.helpcar.model.User;
@@ -25,5 +27,9 @@ public class UserRepository {
 
     public void updateUser(User user) {
         userDao.updateUser(user);
+    }
+
+    public List<User> getUsers() {
+        return userDao.getUsers();
     }
 }

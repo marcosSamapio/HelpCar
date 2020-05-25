@@ -1,6 +1,5 @@
 package br.com.helpcar.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,7 +67,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldUserName = findViewById(R.id.textUserName);
+        fieldUserName = findViewById(R.id.loginEmail);
         fieldUserCPF = findViewById(R.id.textUserCPF);
         fieldUserEmail = findViewById(R.id.textUserEmail);
 
@@ -78,7 +77,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     }
 
     private void configConfirmButton() {
-        Button confirmButton = findViewById(R.id.btnConfirmRegister);
+        Button confirmButton = findViewById(R.id.btnLogin);
         confirmButton.setText(R.string.string_save);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,7 +3,6 @@ package br.com.helpcar.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,8 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
@@ -24,7 +21,7 @@ import br.com.helpcar.viewModel.UserViewModel;
 
 import static br.com.helpcar.R.id.textUserCPF;
 import static br.com.helpcar.R.id.textUserEmail;
-import static br.com.helpcar.R.id.textUserName;
+import static br.com.helpcar.R.id.loginEmail;
 
 public class RegisterUserActivity extends AppCompatActivity {
 
@@ -47,7 +44,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldUserName = findViewById(textUserName);
+        fieldUserName = findViewById(loginEmail);
         fieldUserCPF = findViewById(textUserCPF);
         fieldUserEmail = findViewById(textUserEmail);
 
@@ -59,7 +56,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             }
         //Fim da máscara
     private void configConfirmButton() {
-        Button confirmButton = findViewById(R.id.btnConfirmRegister);
+        Button confirmButton = findViewById(R.id.btnLogin);
         confirmButton.setOnClickListener(
                 new View.OnClickListener() {
             @Override

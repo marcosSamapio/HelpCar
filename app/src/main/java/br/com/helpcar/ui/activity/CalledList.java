@@ -37,12 +37,13 @@ public class CalledList extends AppCompatActivity {
     private CalledViewModel calledViewModel;
     private UserViewModel userViewModel;
     private Context context;
-    private int userId = 1;
+    private int userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        verifyIfExistUser();
+//        verifyIfExistUser();
+        userId = (int) getIntent().getSerializableExtra("userIdSession");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic_called);
         setTitle(R.string.string_calleds);
