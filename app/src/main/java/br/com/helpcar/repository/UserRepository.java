@@ -29,7 +29,7 @@ public class UserRepository {
         userDao.updateUser(user);
     }
 
-    public List<User> getUsers() {
-        return userDao.getUsers();
+    public User getUser(String userEmail, String userPassword) {
+        return userDao.getUser(userEmail, userPassword);
     }
 }

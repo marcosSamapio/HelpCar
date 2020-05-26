@@ -44,6 +44,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <EditText
+        android:id="@+id/textPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:hint="@string/string_password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textUserEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:passwordToggleEnabled="true" />
+
+    <EditText
+        android:id="@+id/textConfirmPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:hint="@string/string_email"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:passwordToggleEnabled="true" />
+
 
     <Button
         android:id="@+id/btnLogin"
@@ -52,7 +80,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUserEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword"
         android:text="@string/string_btnRegister"
         android:textColor="@color/colorWhite"
         android:backgroundTint="@color/colorAccent"/>
@@ -64,7 +92,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toStartOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/textUserEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword"
         android:text="@string/string_btnCancelar"
         android:textColor="@color/colorAccent"
         style="?attr/borderlessButtonStyle"/>

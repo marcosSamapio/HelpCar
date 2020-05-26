@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.helpcar.model.User;
@@ -17,8 +18,8 @@ public interface UserDAO {
     @Query("SELECT * FROM User WHERE userId = :userId")
     User getUser(int userId);
 
-    @Query("SELECT * FROM User")
-    List<User> getUsers();
+    @Query("SELECT * FROM User WHERE userEmail = :userEmail AND userPassword = :userPassword")
+    User getUser(String userEmail, String userPassword);
 
     @Update
     void updateUser(User user);

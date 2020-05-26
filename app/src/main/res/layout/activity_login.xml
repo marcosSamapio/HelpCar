@@ -5,37 +5,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary">
 
-    <EditText
-        android:id="@+id/loginEmail"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:hint="@string/string_email"
-        android:textColorHint="@color/colorWhite"
-        android:inputType="textCapSentences"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/colorWhite"
-        android:theme="@style/LoginEditTextTheme"/>
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/loginPassword"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/LoginEditTextTheme"
+            android:hint="@string/string_email"
+            android:textColor="@color/colorWhite"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayoutPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorWhite"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="35dp"
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
-        android:hint="@string/string_password"
-        android:textColorHint="@color/colorWhite"
-        android:inputType="textPassword"
-        android:theme="@style/LoginEditTextTheme"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:passwordToggleEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/LoginEditTextTheme"
+            android:hint="@string/string_password"
+            android:textColor="@color/colorWhite"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogin"
@@ -46,7 +57,7 @@
         android:layout_marginStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword"
         android:text="@string/string_login"
         android:textColor="@color/colorWhite"
         android:backgroundTint="@color/colorAccent"/>

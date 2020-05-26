@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,17 @@ public class LoginActivity extends AppCompatActivity {
         context = this;
         configFields();
         configLoginButton();
+        configNewUserButton();
+    }
+
+    private void configNewUserButton() {
+        Button btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
+        btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, RegisterUserActivity.class));
+            }
+        });
     }
 
     private void configFields() {
@@ -48,13 +60,13 @@ public class LoginActivity extends AppCompatActivity {
                             email.getText().toString(),
                             password.getText().toString()
                     );
-                    if (user == null) {
-
-                    } else {
+                    if (user != null) {
                         Intent intent = new Intent(context, CalledList.class);
                         intent.putExtra("userIdSession", user.getUserId());
                         startActivity(intent);
                         finish();
+                    } else {
+                        Toast.makeText(context, "Erro Login!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -68,6 +80,9 @@ public class LoginActivity extends AppCompatActivity {
             if(!empty) {
                 return false;
             } else return true;
-        }else return true;
+        }else {
+            CheckField.isEmpty(password);
+            return true;
+        }
     }
 }

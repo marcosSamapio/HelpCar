@@ -19,6 +19,7 @@ import br.com.helpcar.model.User;
 import br.com.helpcar.util.CheckField;
 import br.com.helpcar.viewModel.UserViewModel;
 
+import static br.com.helpcar.R.id.textPassword;
 import static br.com.helpcar.R.id.textUserCPF;
 import static br.com.helpcar.R.id.textUserEmail;
 import static br.com.helpcar.R.id.loginEmail;
@@ -28,6 +29,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     private EditText fieldUserName;
     private EditText fieldUserCPF;
     private EditText fieldUserEmail;
+    private EditText fieldPassword;
     private User user = new User();
     private UserViewModel userViewModel;
     private Context context;
@@ -47,6 +49,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         fieldUserName = findViewById(loginEmail);
         fieldUserCPF = findViewById(textUserCPF);
         fieldUserEmail = findViewById(textUserEmail);
+        fieldPassword = findViewById(textPassword);
 
         //Criando máscara para campo cpf
 
@@ -61,43 +64,69 @@ public class RegisterUserActivity extends AppCompatActivity {
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Boolean register = CheckField.isEmpty(fieldUserName);
-                if(!register) {
-                    register = CheckField.isEmpty(fieldUserCPF);
-                    if(!register) {
-                        register = CheckField.isEmpty(fieldUserEmail);
-                        if(!register) {
-                            createRegister();
-                            startActivity(new Intent(context, CalledList.class));
-                            finish();
-                        }
-                    } else {
-                        CheckField.isEmpty(fieldUserName);
-                        CheckField.isEmpty(fieldUserEmail);
+                Boolean empty = checkFields();
+                if(!empty) {
+                    Boolean created = createRegister();
+                    if(created) {
+                        startActivity(new Intent(context, LoginActivity.class));
+                        finish();
                     }
-                } else {
-                    CheckField.isEmpty(fieldUserCPF, 11);
-                    CheckField.isEmpty(fieldUserEmail);
                 }
             }
         });
     }
 
-    private void createRegister() {
+    private Boolean checkFields() {
+        Boolean empty = CheckField.isEmpty(fieldUserName);
+        if(!empty) {
+            empty = CheckField.isEmpty(fieldUserCPF);
+            if(!empty) {
+                empty = CheckField.isEmpty(fieldUserEmail);
+                if(!empty) {
+                    return false;
+                }
+            } else {
+                CheckField.isEmpty(fieldUserName);
+                CheckField.isEmpty(fieldUserEmail);
+                return true;
+            }
+        } else {
+            CheckField.isEmpty(fieldUserCPF, 11);
+            CheckField.isEmpty(fieldUserEmail);
+            return true;
+        }
+        return true;
+    }
+
+    private Boolean createRegister() {
         String username = fieldUserName.getText().toString();
         String userCpf = fieldUserCPF.getText().toString();
         String userEmail = fieldUserEmail.getText().toString();
-        user.setUserName(username);
-        user.setUserCpf(userCpf);
-        user.setUserEmail(userEmail);
-        userViewModel.createUser(user);
+        String userPassword = fieldPassword.getText().toString();
+        Boolean passwordVeryfied = verifyPassword(userPassword);
+        if (passwordVeryfied) {
+            user.setUserName(username);
+            user.setUserCpf(userCpf);
+            user.setUserEmail(userEmail);
+            user.setUserPassword(userPassword);
+            userViewModel.createUser(user);
 
-        Toast.makeText(this, "Cadastro Realizado:\n" +
-                "Nome: " + user.getUserName() +
-                "\nCPF: " +
-                user.getUserCpf() +
-                "\nEmail: " +
-                user.getUserEmail(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Cadastro Realizado:\n" +
+                    "Nome: " + user.getUserName() +
+                    "\nCPF: " +
+                    user.getUserCpf() +
+                    "\nEmail: " +
+                    user.getUserEmail(), Toast.LENGTH_LONG).show();
+            return true;
+        } else return false;
+    }
+
+    private Boolean verifyPassword(String password) {
+        EditText fieldConfirmPassword = findViewById(R.id.textConfirmPassword);
+        String confirmPassword = fieldConfirmPassword.getText().toString();
+        if(password.equals(confirmPassword)) {
+            return true;
+        } else return false;
     }
 
     private void configCancelButton() {

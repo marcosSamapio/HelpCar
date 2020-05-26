@@ -23,25 +23,17 @@ public class UserViewModel extends AndroidViewModel {
 
     public User getUser(int userId) { return userRepository.getUser(userId); }
 
-    public List<User> getUsers() { return userRepository.getUsers(); }
+    public User verifyLogin(String userEmail, String userPassword) {
+        User user = userRepository.getUser(userEmail, userPassword);
+        if (user != null) {
+            if(userEmail.equals(user.getUserEmail()) && userPassword.equals(user.getUserPassword())) {
+                return user;
+            } else return null;
+        } else return null;
+
+    }
 
     public void updateUser(User user) {
         userRepository.updateUser(user);
-    }
-
-    public User verifyLogin(String email, String password) {
-        List<User> users = getUsers();
-        User user;
-        int size = users.size();
-        int i = 0;
-        while(i < size) {
-            user = users.get(i);
-            if(email == user.getUserEmail() && password == user.getUserPassword()) {
-                i = size + 1;
-                return user;
-            }
-            i++;
-        }
-        return null;
     }
 }
