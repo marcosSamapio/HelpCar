@@ -70,7 +70,7 @@ public class CalledListAdapter extends BaseAdapter {
 
     private void addId(Called called, TextView fieldCalled) {
         int id = called.getCalledId();
-        fieldCalled.setText(cardTitle);
+        fieldCalled.setText(cardTitle + " " + id);
     }
 
     private void addDescription(Called called, TextView fieldDescrpition) {
