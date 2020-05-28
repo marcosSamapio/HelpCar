@@ -5,6 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
@@ -26,15 +29,15 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     private EditText fieldUserCPF;
     private EditText fieldUserEmail;
     private int userId;
-    private User user = new User();
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        userId = (int) getIntent().getSerializableExtra("userIdSession");
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        user = getUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_register);
+        userId = (int) getIntent().getSerializableExtra("userIdSession");
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        getUser(userId);
         setTitle(R.string.string_profile);
         inicializingFields();
         fillFields();
@@ -52,8 +55,8 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         fieldUserEmail.setText(user.getUserEmail());
     }
 
-    private User getUser() {
-        return userViewModel.getUser(userId);
+    private void getUser(int userId) {
+        user = userViewModel.getUser(userId);
     }
 
     private void configCancelButton() {
@@ -67,7 +70,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldUserName = findViewById(R.id.loginEmail);
+        fieldUserName = findViewById(R.id.textUserName);
         fieldUserCPF = findViewById(R.id.textUserCPF);
         fieldUserEmail = findViewById(R.id.textUserEmail);
 

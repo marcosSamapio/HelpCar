@@ -1,100 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditText
-        android:id="@+id/loginEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_name"
-        android:inputType="textCapSentences"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <EditText
-        android:id="@+id/textUserCPF"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_cpf"
-        android:inputType="number"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/textUserEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@+id/textUserCPF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/string_name"
+                android:inputType="textCapWords"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/textPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_password"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textUserEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:passwordToggleEnabled="true" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutCPF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <EditText
-        android:id="@+id/textConfirmPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:hint="@string/string_email"
-        android:inputType="textPassword"
-        app:layout_constraintTop_toBottomOf="@+id/textPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:passwordToggleEnabled="true" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textUserCPF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/string_cpf"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutCPF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword"
-        android:text="@string/string_btnRegister"
-        android:textColor="@color/colorWhite"
-        android:backgroundTint="@color/colorAccent"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textUserEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/string_email"
+                android:inputType="textEmailAddress"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
-        app:layout_constraintTop_toBottomOf="@+id/textConfirmPassword"
-        android:text="@string/string_btnCancelar"
-        android:textColor="@color/colorAccent"
-        style="?attr/borderlessButtonStyle"/>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:passwordToggleEnabled="true"
+            android:visibility="gone">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/string_password"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutConfirmPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:passwordToggleEnabled="true"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/string_confirmPassword"
+                android:inputType="textPassword"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPassword"
+            android:text="@string/string_btnRegister"
+            android:textColor="@color/colorWhite"
+            android:backgroundTint="@color/colorAccent"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutConfirmPassword"
+            android:text="@string/string_btnCancelar"
+            android:textColor="@color/colorAccent"
+            style="?attr/borderlessButtonStyle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

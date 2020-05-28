@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
@@ -30,6 +32,8 @@ public class RegisterUserActivity extends AppCompatActivity {
     private EditText fieldUserCPF;
     private EditText fieldUserEmail;
     private EditText fieldPassword;
+    private TextInputLayout inputLayoutPassword;
+    private TextInputLayout inputLayoutConfirmPAssword;
     private User user = new User();
     private UserViewModel userViewModel;
     private Context context;
@@ -46,10 +50,15 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldUserName = findViewById(loginEmail);
+        fieldUserName = findViewById(R.id.textUserName);
         fieldUserCPF = findViewById(textUserCPF);
         fieldUserEmail = findViewById(textUserEmail);
         fieldPassword = findViewById(textPassword);
+        inputLayoutPassword = findViewById(R.id.inputLayoutPassword);
+        inputLayoutConfirmPAssword = findViewById(R.id.inputLayoutConfirmPassword);
+
+        inputLayoutPassword.setVisibility(View.VISIBLE);
+        inputLayoutConfirmPAssword.setVisibility(View.VISIBLE);
 
         //Criando máscara para campo cpf
 

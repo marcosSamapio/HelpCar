@@ -27,5 +27,6 @@
     <string name="string_password">Senha*</string>
     <string name="string_login">Login</string>
     <string name="string_btnNewRegister">Não possui uma conta? Registre-se</string>
+    <string name="string_confirmPassword">Confirmar Senha*</string>
 
 </resources>

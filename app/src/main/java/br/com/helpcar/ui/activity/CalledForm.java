@@ -138,9 +138,9 @@ public class CalledForm extends AppCompatActivity {
     }
 
     private void inicializingFields() {
-        fieldBrandVehicle = findViewById(R.id.textEmail);
+        fieldBrandVehicle = findViewById(R.id.textBrand);
         fieldModelVehicle = findViewById(R.id.textModelVehicle);
-        fieldDescription = findViewById(R.id.textBodyEmail);
+        fieldDescription = findViewById(R.id.textDescription);
         imageCardView = findViewById(R.id.imageCardView);
         calledImageView = findViewById(R.id.calledPhoto);
     }

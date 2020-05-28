@@ -36,8 +36,8 @@ public class SupportActivity extends AppCompatActivity {
     }
 
     private void inicializeFields() {
-        emailAdress = findViewById(R.id.textEmail);
-        bodyEmail = findViewById(R.id.textBodyEmail);
+        emailAdress = findViewById(R.id.inputLayoutBrand);
+        bodyEmail = findViewById(R.id.inputLayoutBodyDescription);
 
         emailAdress.setTextIsSelectable(false);
         emailAdress.setText(R.string.string_emailSupport);

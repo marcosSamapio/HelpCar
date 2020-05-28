@@ -104,14 +104,14 @@ public class CalledList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
         switch (menuItemId) {
-            case R.id.menuItemRegister: startActivity(buildIntent());
+            case R.id.menuItemRegister: startActivity(openProfile());
             break;
             case R.id.menuItemSupport: startActivity(new Intent(this, SupportActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private Intent buildIntent() {
+    private Intent openProfile() {
         Intent intent = new Intent(this, UpdateUserRegisterActivity.class);
         intent.putExtra("userIdSession", userId);
         return intent;

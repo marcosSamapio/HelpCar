@@ -11,7 +11,7 @@
         android:layout_marginBottom="32dp">
 
         <EditText
-            android:id="@+id/textEmail"
+            android:id="@+id/inputLayoutBrand"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -28,7 +28,7 @@
             />
 
         <EditText
-            android:id="@+id/textBodyEmail"
+            android:id="@+id/inputLayoutBodyDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="start|top"
@@ -37,7 +37,7 @@
             android:layout_marginLeft="16dp"
             android:hint="@string/string_emailAsk"
             android:inputType="textMultiLine"
-            app:layout_constraintTop_toBottomOf="@+id/textEmail"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutBrand"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:layout_margin="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textBodyEmail"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutBodyDescription"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:visibility="gone">
