@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
 import br.com.helpcar.util.CheckField;
+import br.com.helpcar.util.MaskFormat;
 import br.com.helpcar.viewModel.UserViewModel;
 
 import static br.com.helpcar.R.id.textPassword;
@@ -60,13 +61,9 @@ public class RegisterUserActivity extends AppCompatActivity {
         inputLayoutPassword.setVisibility(View.VISIBLE);
         inputLayoutConfirmPAssword.setVisibility(View.VISIBLE);
 
-        //Criando máscara para campo cpf
+        MaskFormat.cpf(fieldUserCPF);
+    }
 
-        SimpleMaskFormatter smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
-        MaskTextWatcher mtw = new MaskTextWatcher(fieldUserCPF, smf);
-        fieldUserCPF.addTextChangedListener(mtw);
-            }
-        //Fim da máscara
     private void configConfirmButton() {
         Button confirmButton = findViewById(R.id.btnLogin);
         confirmButton.setOnClickListener(

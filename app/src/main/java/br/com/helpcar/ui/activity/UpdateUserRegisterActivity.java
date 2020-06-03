@@ -20,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import br.com.helpcar.R;
 import br.com.helpcar.model.User;
 import br.com.helpcar.util.CheckField;
+import br.com.helpcar.util.MaskFormat;
 import br.com.helpcar.viewModel.UserViewModel;
 
 public class UpdateUserRegisterActivity extends AppCompatActivity {
@@ -74,9 +75,7 @@ public class UpdateUserRegisterActivity extends AppCompatActivity {
         fieldUserCPF = findViewById(R.id.textUserCPF);
         fieldUserEmail = findViewById(R.id.textUserEmail);
 
-        SimpleMaskFormatter smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
-        MaskTextWatcher mtw = new MaskTextWatcher(fieldUserCPF, smf);
-        fieldUserCPF.addTextChangedListener(mtw);
+        MaskFormat.cpf(fieldUserCPF);
     }
 
     private void configConfirmButton() {

@@ -35,14 +35,12 @@ public class CalledList extends AppCompatActivity {
     private List<Called> calleds;
     private ListView calledList;
     private CalledViewModel calledViewModel;
-    private UserViewModel userViewModel;
     private Context context;
     private int userId;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        verifyIfExistUser();
         userId = (int) getIntent().getSerializableExtra("userIdSession");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historic_called);
@@ -131,19 +129,5 @@ public class CalledList extends AppCompatActivity {
         Intent intent = new Intent(this, CalledForm.class);
         intent.putExtra("userIdSession", userId);
         startActivity(intent);
-    }
-
-    private void verifyIfExistUser() {
-        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
-        User user = userViewModel.getUser(userId);
-        if (user == null) {
-            openUserRegisterActivity();
-            finish();
-        }
-    }
-
-    private void openUserRegisterActivity() {
-        startActivity(new Intent(this, RegisterUserActivity.class));
-        finish();
     }
 }
